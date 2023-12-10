@@ -1,0 +1,90 @@
+body { font-size: 12pt;
+ background-color: #FFFFFF;
+ color: #00007F; }
+td { font-size: 12pt;
+ background-color: #FFFFFF;
+ color: #00007F; }
+h1 { font-size: 18pt;
+ color: #650000;
+ background-color: #E8D5BA;
+ text-align: Left;
+ font-weight: bold;
+ width: 100%;
+ margins: 0;
+ padding: 5;
+ paddings: 4;
+ border-style:double;
+ border-width:1pt; }
+h2 {background-color: #CBD1A9;
+ color: #000075;
+ font-size: 14pt;
+ text-align: Left;
+ font-weight: bold;
+ width: 100%;
+ margins: 0;
+ padding: 3;
+ border-style: double;
+ border-width: 1pt;
+ border-color: #808080 }
+h3 {background-color: #C5DCDC;
+ color: #000075;
+ font-size: 14pt;
+ text-align: Left;
+ font-weight: bold;
+ width: 100%;
+ margins: 0;
+ padding: 3;
+ border-style: double;
+ border-width: 1pt;
+ border-color: #808080 }
+h5 { font-size: 12pt;
+ font-weight: bold;
+ color: #7F0000; }
+h6 { font-size: 12pt;
+ font-weight: normal;
+ color: #7F0000; }
+em.em1 { font-weight: bold;
+ font-style: normal; }
+em.em2 { font-weight: bold;
+ font-style: normal;
+ text-decoration: underline }
+em.em3 { font-weight: bold;
+ font-style: italic; }
+em.formula { font-weight: normal;
+ font-style: normal;
+ color: #000000; }
+.balloon { border-width: medium;
+ border-style:inset;
+ border-color:blue;
+ position:absolute;
+ layer-background-color:yellow;
+ background-color: yellow;
+ padding:2;
+ visibility:hidden; }
+.isTip { text-decoration:none; }
+a { text-decoration: underline; }
+a.bookmark{ text-decoration: none; }
+a.def { color: #FF0000; }
+a.rozwiazanie { font-style: italic; }
+ul.slownik { list-style-type: none; }
+.krok { font-style: italic; }
+.narzedzie{color: #FF0000 }
+.dymek{border-width: .1pt;
+ border-style: solid;
+ border-color: #000000; 
+ position: absolute;
+ background-color: yellow;
+ padding: 2;
+ layer-background-color: yellow;
+ visibility: hidden}
+.dymekPokazany{border-width: medium;
+ border-style: inset;
+ border-color: red; 
+ position: absolute;
+ background-color: yellow;
+ padding: 2;
+ layer-background-color: yellow;
+ visibility: show}
+.nPojecie { color: #800000;
+ font-weight: bold;
+ font-style: normal; }
