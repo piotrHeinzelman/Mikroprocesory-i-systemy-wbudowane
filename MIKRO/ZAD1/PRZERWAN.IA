@@ -1,0 +1,54 @@
+; DODAC TAKI ZAPIS 
+; adres_xxx dd (?)   dodac taki zapis 
+; obsluga_xxx :
+
+
+
+instaluj macro nr_przerwania
+push ax
+push bx
+push es
+mov bx,0
+mov es,bx
+mov bl,nr_przerwania
+mov bh,0
+add bx,bx
+add bx,bx
+mov ax,es:[bx]
+mov word ptr adres_&nr_przerwania,ax
+mov ax,es:[bx+2]
+mov word ptr adres_&nr_przerwania+2,ax
+mov word ptr es:[bx+2],seg obsluga_&nr_przerwania
+mov word ptr es:[bx],offset obsluga_&nr_przerwania
+pop es
+pop bx
+pop ax
+endm
+
+
+
+; na poczatku POCZATEk_int;
+; na koncu  KONIEC_int;
+
+pozostaw_rezydentny macro 
+push ax
+push dx
+
+
+mov ax,offset koniec_int 
+sub ax,offset poczatek_int
+shr ax,1
+shr ax,1
+shr ax,1
+shr ax,1
+add ax,11h
+mov dx,ax
+mov ah,31h
+int 21h
+pop dx
+pop ax
+
+endm
+
+
+

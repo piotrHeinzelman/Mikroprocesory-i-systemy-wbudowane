@@ -1,0 +1,154 @@
+Procedury systemowe 
+
+   standartowe urzadzenia znakowe
+
+00 - koniec programu                      nowsza wersja to 4c
+01 - czytaj znak z echem                  out al:przeczytany znak 
+		        sa one zdefiniowane w tablicy jej adres PSP+32h 
+			dojscia 0 strumien  wejsciowy (con) 
+			        1 strumien wyjsciowy  (CON)
+				2 strumien diagnistyczny 
+				3 strumien dodatkowy (zlacze szereg. AUX)
+				4 strumien drukarki 
+02 - wypisz znak dl=kod znaku 
+03 - czytaj znak z urz. dodatkowego al=kod znaku 
+04 - wypisz znak na urz. dodatkowe  dl=kod znaku 
+05 - drukuj znak                    dl=kod znaku 
+06 - bezposrednie korzystanie z konsoli   if dl=ff  al<con  else  dl=znak>con
+07 - bezposrednie czytanie z konsoli   al=znak z klaw.
+08 - czytanie znaku                    al=znak
+09 - wypisywanie textu                 ds:dx -adres bufora
+0a - czytaj wiersz z klawiatury        ds:dx adres bufora 
+0b - sprawdz stan klawiatury      al=0ff w buforze sa znaki al=0 nie ma znakow
+0c - oproznij bufor i czytaj z klaw.  
+
+
+  Gospodarka pamiecia 
+
+48 przydzial pamieci
+49 zwalnianie pamieci 
+4a zmiana wielkosci przydzielonej pamieci 
+58 pobierz/ustaw strategie przydzialu pamieci 
+
+
+  Zarzadzanie procesami 
+
+31 usypianie procesu     al-kod powrotu dx rozmiar w paragrafach (16 bit)
+4b00 ladowanie i usypianie procesu 
+4b03 ladowanie nakladki 
+4c konczenie prrocesu
+4d pobieranie kodu powrotu do procesu potomnego 
+62 pobieranie adresu PSP
+
+
+  Operacje na plikach 
+
+3c tworzenie dojscia   ds:dx nazwa pliku  cx,atrybuty  ax,nr dojscia
+3d otwieranie dojscia  al=tryb dostepu ds:dx nazwa pliku +00 out: ax-nr dojscia 
+3e zamykanie dojscia    bx=nr dojsca 
+3f czytanie przez dojscie bx=nr.dojscia cx liczba bajtow ds:dx bufor  out: ax=liczba bajtow 
+40 pisanie przez dojscie bx=nr.dojscia cx=liczba bajtow ds:dx bufor
+42 ustawianie wskaznika w pliku  bx=nr dojscia al=sposob liczenia cx:dx odeeglosc 0-od poczatku 1-od bierzacej 2-od konca 
+45 kopiowanie dojscia bx nr dojscia out: ax-nowe dojscie 
+46 zmiana dojscia bx dojscie  cx wtorne dojscie 
+5a tworzenie pliku roboczego cx attrib ds:dx scierzka+ 13 wolnych znakow out: nr dojscia 
+5b tworzenie nowego pliku   ds:dx nazwa cx:attrib out: nr dojscia 
+67 ustawianie maaxymalnej liczby dojsc 
+68 stabilizowanie pliku 
+6c rozszerzone otwieranie dojscia 
+
+
+ Nadzorowanie pracy urzadzen
+
+4400 pytanie o opis urzadzenia 
+4401 ustalanie opisu urzadzenia 
+4402 wysylanie polecenia do urzadzenia znakowego   \ bx=nr urzadz 0-bierz cx liczba bajtow ds:dx bufor 
+4403 odbieranie informacji od urzadzenia znakowego /
+4404 wysylanie polecenia do urzadzenia blokowego 
+4405 odbieranie informacji od urzadzenia blokowego 
+4406 pytanie o stan urzadzenia wejsciowego \ bx=nr out: al=0 nie gotowe al=ff gotowe 
+4407 pytanie o stan urzadzenia wyjsciowego /
+4408 pytanie czy urzadzenie ma wymienny nosnik bx=nr urz. 0-bie out ax=0 ma wymienny ax=1 nie ma 
+440b ustalanie liczby nawrotow dx-liczba nawr.  cx czas miedzy powtorzeniem 
+440c ustalanie matrycy znakow urzadzen bx-nr dojscia ch-typ urzadz.0 nieznane 1-com 3-con 5-lpt cl=4ch zacznij przygotowywac matryce =4d przygotuj matr. 4a wybbierz przygotowana matr. 6a pobierz liste matryc  ds:dx adres bufora
+440d ogolna kontrola urzadzen blokowych  bl=nr urz 0-bie ch=08 cl kod ds:dx adres bloku param  kod 40 ustal param  41 zapisz scierzke urz. logicznego  42formatuj scierzke  60 pobierz parm. urz  61 czytaj scierzke   62 weryfikuj scierzke    cl=40, cl=60 
+440e pobierz mape urzadzenia 
+440f ustaw mape urzadzenia 
+
+ Dzialanie na katalogach 
+
+39 tworzenie katalogu  ds:dx adrews nazwy +00
+3a usuwanie katalogu   ds:dx nazwa+00
+3b ustalanie bierzacego katalogu  ds:dx nazwa+00
+41 usuwanie pozycji w katalogu   ds:dx adres nazwy 
+43 sprawdzanie lub zmiana atrybutow pliku al=0 pobranie al=1 zmiana cx=atrybuty ds:dx nazwa
+47 ptanie o bierzacy katalog ds:si bufor  dl=dysk 0-bie 
+4e znajdowanie pierwszego pliku w katalogu ds:dx adres nazwy   cx attrib out dta=+15 attrib +16 czas +18 data +1a rozmiar +1e nazwa+rozsz
+4f znajdowanie nastepnego pliku w kataogu 
+56 zmiana pozycji w katalogu ds:dx pierwotna nazwa es:di nazwa wtorna 
+57 sprawdzanie i modyfikacja daty i czasu al=0 sprwdzenie al=1 ustaw. bx,nr.dojscia cx czas dx=data dx=15..9 rok 8..5 miesiac 4..0 dzien  cx:15..11 godz 10..5 minuta 4.0 sekunda *2
+
+  Funkcje sieciowe 
+
+1f pytanie o adres bloku informacji o urzadzeniu lub bierz. dysku ds:bx adres bloku info o dysku (+0 nazwa (0-a 1-b)) +1 numer urzadzenia w programie  +2 rozmiar sectora w bajtach   +4 liczba sect/blok przydzialu   +5 n(blok.przydzialu=2*liczba sect)   +6 liczba zarez. sectorow na dysku   +8 liczba fat  +9 ilosc pozycji w root +b nr. 1 sectora z danymi  +d liczba jedn. przydzialu  +f rozmiar ffat w sectorach  +10 sector gdzie jest root   +12 adres naglowka urzadzenia  +16 bajt identyfikujacy postac dysku (FAT)   +17 znacznik dostepu +18 adres nastepnego bloku info ffff gdy ostatni 
+4409 pytanie ,czy urzadzenie blokowe jest dostepne przez siec bx=nr out dx:atrybuty
+440a pytanie czy plik lub urzadzenia sa dostepne przez siec bx=nr dojscia out: dx=attrib
+5e00 pytanie o nazwe stanowiska roboczego ds:dx adres 16bajt bufora out cx-nr lokalnej stacji ds:dx nazwa 
+5f02 pytanie o pozycje listy przypisan al=02 bx=index w liscie ds:si adres nazwy lokalnej es:di nazwa odlegla out: bl=3 drukarka 4-dysk cx=wart przypisana urzadzeniu przez user`a
+5e02 ustalenie znakow sterujacych drukarka 
+5f03 dodawanie pozycji do listy przypisan (Login?) bl=3 drukarka bl=4 dysk cx wartosc przypisana przez user`a ds:si nazwa lokalna es:di nazwa odlegla z haslem 
+5f04 usuwanie pozycji z listy przypisan (logout?)  ds:si nazwa lokalna
+
+
+  Funkcje CP/M
+
+00 Konczenie programu 
+0f otwieranie pliku                 ds:dx adres bloku fcb out al=00 ok 
+10 zamykanie pliku                  ds:dx FCB  out al=0 ok 
+11 znajdowanie 1 pozycji w katalogu ds:dx=FCB ax=0 ok, al=ff nie ma 
+12 znajdowanie nastepnej poz. w katalogu   ds:dx=FCB al=0 ok , al=ff bad 
+13 usuwanie pliku                   ds:dx=FCB 
+14 sekwencyjne czytanie z pliku ds:dx FCB out al=0 ok ,01-end 
+15 sekwencyjne pisane do pliku       ds:dx=FCB 
+16 tworzenie pliku                   ds:dx FCB
+17 zmiana nazwy pliku                ds:dx nowy FCB 
+21 swobodne czytanie z pliku         ds:dx FCB al=0 ok 
+22 swobodne pisanie w pliku          ds:dx FCB  al=0 ok 
+23 pytanie o rozmiar pliku           ds:dx FCB  al=0 ok 
+24 wybieranie rekordu                ds:dx FCB 
+26 tworzenie nowego PSP              ds:dx FCXB nowy 
+27 Swobodne czytanie ciagu rekordow     ds:dx FCB cx liczba rek al=0 ok cx - liczba przeczyt. rekordow 
+28 swoodne pisanie ciagu rekordow  ds:dx FCB cx=0 ustaw rozmiar pliku 
+
+ Inne funkcje 
+0d stabilizowanie stanu dyskow 
+0e ustalanie dysku bierzacego  in: dl=nr.dysku logiczn 0-a 1-b  out:al=ilosc wszystkich dyskow 
+19 pytanie o dysk bierzacy     out al=dysk  0-a 1-b 
+1a ustalanie bufora roboczego DTA   ds:dx=DTA
+1b pytanie o charakterystyke dyskow al=sect,cx=bytes/sect,dx ile blok. przydzialu,ds:bx adres bajtu id 
+1c pytanie o charakterystyke urzaadzenia blokowego in dl=nr.urzadzenia 0 bierz 1-a 2-b out: al=sectory cx=bytes/sect dx licz. blok. przydzialu  ds:bx adres bajtu id 
+25 ustalanie adresu kodu przerwania    al=nr.przerwania in ds:dx 
+29 rozklad nazw pliku al-sposob rozkladu ds:si adres lancucha do rozkladu es:i FCB 
+2a pytanie o date out: cx,rok dx,miesiac dl dzien al dzien tygodnia 0-niedziela
+2b ustalanie daty tak samo jak powyrzej 
+2c pytanie o czas  ch=godz. cl-min dh-sek dl setne sek 
+2d ustalanie czasu  tak samo 
+2e ustalenie wskaznika weryfikacji al=0 off al=1 on 
+2f pytanie o bufor roboczy  es:bx DTA
+30 pytanie o wersje systemu al=6 ah=22 bh=dostawca systemu bl:cx 24 bit nr.seryjny 
+33 pytanie lub ustalenie wrazliwosci na ctrl-c
+34 pytanie o adres sygnalizatora pracy systemu if <>0 system dziala es:bx
+35 pytanie o adres kodu obslugi przerwanie  al=nr. przerwania out: es:bx wektor
+36 pytanie o rozmiar wolnego obszaru na dysku dl=nr.dysku 0-bie 1-a 2-b out: bx=liczba wolnych clusters cx=sector(w bajtach)  dx=wszystkie clusters ax=liczba sect/clusterc cala poj = AX*BX*CX
+37 pobierz/ustaw znak przekazywania parametrow dl=kod nowy if al=1 dl=start if al=0 chodzi o znak /
+38 pytanie/ustalenie kodu kraju  dx=ffff -pytanie inna pytanie o kod kraju out: al=0 
+52 pobierz adres listy przypisan es:bx adres listy f-2 pierwszy przydzielony blok pam +00 "0" +1 adres pierwsz bloku dysku +8 adres proc CLOCK +c CON +10 max liczba bajtow dla procedor obslugi  +20 liczba urzadzen w systemie +21 wartosc lastdrive +22 null 
+54 pytanie o wskaznik weryfikacji 
+5c00 rezerwowanie czesci pliku 
+5c01 zwalnianie czesci pliku 
+59 pytanie o plny kod bledu 
+65 pobierz rozszerzone info o kraju 
+66 ustal globalna matryce znakow 
+
+
+

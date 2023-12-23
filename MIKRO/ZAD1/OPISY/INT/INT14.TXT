@@ -1,0 +1,71 @@
+port szeregowy 
+int 14h 
+
+	ah=00 inicjacja portu ****
+	dx=nr.portu 0=com1 1=com2 ...
+	al=parametr inicjujacy 
+	         predkosc   parzyst       stopy         dl.slwa
+		bity 7,6,5    4,3           2            1,0 
+			
+           100 bodow 0,0,0    x,0 bez       0  1bit     1,0=7 bitow
+	   150 bodow 0,0,1    0,1 nieparz   1  2bity 	1,1=8 bitow
+	   300 bodow 0,1,0    1,0 parzystosc
+	   600       0,1,1
+	  1200       1,0,0   
+	  2400-101  4800-110  9600-111 
+
+	out :
+	ah=status portu
+	bit 7-time out 
+	    6-pusty rejestr przesuwny nadajnika 
+	    5-pusty rejestr nadajnika
+	    4-przerwana transmisja
+	    3-blad formatu 
+	    2-blad parzystosci
+	    1-przepelnienie 
+	    0-odbierana dana gotowa
+	al=status modemu 
+		7-wykryty sygnal linii odbiorczej 
+		6-wskaznik dzwonka
+		5-stan wysoki linii Data-Set-Ready 
+		4-stan wysoki linii Clear-To-Send
+		3-zmiana stanu linii 
+		2-tylne zbocze sygnalu dzwonka
+		1-zmiana DSR
+		0 zmiana CTS
+
+	
+	ah=01 Wyslanie znaku do portu szereg. ***
+		al=znak
+		dx=nr.portu
+		
+	ah=02 odczyt znaku z portu szereg.   ***
+		dx=nr.portu 
+
+	ah=03 odczyt statusu portu  ***
+		dx=nr portu 
+ 
+	ah=04 poszerzona inicjacja portu ***
+		al=flaga przerwania =0 bez przerw =1 z przerw. 
+		bh=parity  00=bez  01=niepar. 02=parzys. 
+		bl=ilosc slow stopu 00 -1 bit 01 -2bity  02-1.5 bitu 
+		ch=dlugosc slowa 00-5bitow 01-6bit 02-7bit  03-8bit
+		cl=predkosc  0-110 1-150 2-300 3-600 4-1200 5-2400 6-4800 
+			     7-9600 8-19200
+		out: al,status portu  ah,status modemu 
+
+	ah=05 poszerzone sterowanie portem szereg.
+		al=podfunkcja  00-odczyt MCR   01-zapis MCR
+		bl=MCR
+			bity 0-stan linii Data Terminal reAdy
+			 1 rstan Request To Send 
+			 2  out 1
+			 3  out 2
+			 4 petla do celow diags.
+			 5-7 zarez.
+		dx=nr.portu
+		out: bl=MCR ah=sta. portu al=sta. modemu 
+	
+	
+				
+		

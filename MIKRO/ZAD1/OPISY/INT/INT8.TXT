@@ -1,0 +1,8 @@
+przerwanie zegara wywolywane przez sterownik 8259
+IRQ 0
+wykonywane co 55 mms modyfikuje zmienne 0:046c 
+wywoluje przerwanie urzytkownika 1ch
+na koncu umiescic mov al,20h
+		  out 20h,al 
+		(zakonczenie przerwania )
+

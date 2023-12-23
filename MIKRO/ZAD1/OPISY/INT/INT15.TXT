@@ -1,0 +1,28 @@
+URZADZENIA
+
+przechwyt klawiaury wywolywana przy kazdym nacisnieciu klawisza 
+ah=4fh
+	al=kod klawisza
+
+out: cf=0 jesli kod klawisza usuniety
+     cf=1 jesli nie usuniety
+
+
+
+ah=80       Otwarcie urzadzenia (Uzyskuje prawa do urzadzenia logicznego )
+	bx=kod urzadzenia
+	cx=kod procesu 
+	
+ah=81       zamkniecie urzadzenia 
+	bx=kod urzadzenia
+	cx=kod procesu
+
+ah=82 zakonczanie procesu  cx=kod procesu
+	
+
+ah=83 oczekiwanie na wydarzenie al=0 cx:dx liczba mikrosekund
+				es:bx bajt semafora 
+
+ah=90 oczekiwanie na urzadzenie 
+	al=identyfik. urzadzenia 00-hdd 01-fdd 02-klaw  80-siec (es:bx blok 
+				kontrolny sieci)0fd start silnika fdd 0fe-lpt

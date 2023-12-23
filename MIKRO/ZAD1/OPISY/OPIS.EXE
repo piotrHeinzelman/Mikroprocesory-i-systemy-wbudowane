@@ -1,0 +1,17 @@
+opis naglowka pliku exe
+00-01 "MZ" -sygnatura
+02-03 liczba bajtow na ost. stronie (512b)
+04-05 wielkosc pliku exe w 512 bajt. stronach + naglowek
+06-07 liczba pozycji w FAT
+08-09 rozmiar naglowka w 16-bajtowych porcjach
+0a-0b minimalna liczba paragrafow ktore maja byc zarezerwowane za koncem program 
+0c-0d max liczba paragrafow - - - - - - - - - - - -
+0e-0f wartosc poczatkowa ss
+10-11 wart. pocz. sp 
+12-13 suma kontrolna wczystkich 16 bitowych slow pliku 
+14-15 wartosc ip
+16-17 wartosc cs
+18-19 przemieszczenie tablicy relokacji wzgledem poczatku pliku 
+1a-1b nr. nakladki 0-czesc rezydentna
+1ch-... tabela relokacji 
+

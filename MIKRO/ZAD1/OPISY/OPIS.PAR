@@ -1,0 +1,18 @@
+partycje 
++0 instrukcje odczytujace info o partycjach, wczytuja bloki aktywnej par.
+		i oddaja mu sterowanie 
++1be opis par. 1
++1ce opis par. 2
+...
+1fe  0aa55h   symbol konca
+
+opis part 
++0  znacznik aktywnosci 0-nie 80-aktywna
++1  numer glowicy poczatku partycji 
++2 nr. scierzki i sektora poczatku partycji (10 bit nr.scierzki 6-nr.sectora)
++4 kod systemu 0-unknown 1-dos12 4-dos16 5-rozszerzona
++5 nr.glowicy konca partycji
++6 nr. ostatniej scierzki i sektora partycji  
++8 nr pierwszego sekt. relatywnej partycji (nr. logiczny od poczatku dysku )
++0c rozmiar w sektorach
++10 opis nastepnej lub (0aa55h)-koniec

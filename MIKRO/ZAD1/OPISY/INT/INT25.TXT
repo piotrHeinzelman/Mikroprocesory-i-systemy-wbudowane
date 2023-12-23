@@ -1,0 +1,11 @@
+czytanie i pisanie (int 26h)
+sektora dyskowego 
+al=nr dysku 0=a 1=b ..
+ds:dx adtes byfora operacji dyskowych (DTA)
+cx=liczba sektorow
+dx=nr.logiczny 1 sectora
+
+
+DTA opis w pliku opis.dta
+
+

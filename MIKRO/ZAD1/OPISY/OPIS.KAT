@@ -1,0 +1,9 @@
+struktura katalogu 
++0 8 NAZWA+spacje
++8 3 ROZ szerzenie
++b 1 atrybuty (jak pliku )
+0c 0a zarez.
+16 2 czas
+18 data
+1a nr pierwszej jednostki przydzialu w fat
+1c rozmiar w bajtach
