@@ -1,0 +1,31 @@
+boot sector (blok ladujacy)
+
++0  3  jmp nn nop           instrukcja skoku do kodu
++3  8  IBM  5.0             nazwa i numer OEM
++b  2  bajtow na sektor 
++d  1  liczba sektorow w jednostce przydzialu 
++e  2  liczba zarez. sektorow(w ym FAT)
++10 1  liczba tablic FAT
++11 2  liczba pozycji w kat. glownym
++13 2 ogolna liczba sektorow na dysku (partycji)
++15 ID identyfikator 
++16 2 liczba sektorow tablicy FAT
++18 2 liczba sect. na scierzce
++1a 2 liczba glowic(stron)
++1b 2 liczba ukrytych sektorow(dla innych systemow)
+nn start kodu 
+
+                     5.25"   5.25"  5.25  5.25  5.25  3.5`  HDD  
+id                   0ffh    0feh   0fdh  0fch  0f9h  0f9h  0f8h
+scierzek              40      40     40    40    80    80    614
+sect/scierzke          8       8      9     9    15     9     17
+sekt/j.przydz          2       1      1     2     2     2      4
+sekt.zarez             1       1      1     1     1     1      1
+liczba fat             2       2      2     2     2     2      2
+liczba poz. w glownym112      64    112    64   224   112    512
+liczba sect          640     320    720   360  2400  1140  41752
+rozmiar fat            1       1      2     2     7     3     41
+l. glowic              2       1      2     1     2     2      4
+l. sect ukrytych       0       0      0     0     0     0      0 
+liczba bitow fat      12      12     12    12    12    12     16
+

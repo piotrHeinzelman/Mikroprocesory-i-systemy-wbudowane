@@ -1,0 +1,4 @@
+BOOTSTRAP SYSTEMU uruchamia procedure ladowania systemu 
+	sektor 1 scierzka 0 przepisuje do 0000:7c00h  
+	i odpala system 
+	jesli 0000:0472 nie zawiera 1234h to zostanie wykonany test pamieci 

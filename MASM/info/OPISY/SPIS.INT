@@ -1,0 +1,66 @@
+00 Dzielenie przez zero 
+01 praca krokowa
+02 NMI
+03 przerwanie programu
+04 przepelnienie
+05 PrintScreen
+06 bledny op.code
+07 brak koproc.
+08 zegar          IRQ 0 
+09 klawiatura     IRQ 1 
+0a kontroler 8259 IRQ 2
+0b COM 2          IRQ 3
+0c COM 1          IRQ 4
+0d drukarka LPT 2 IRQ 5
+0e dyskietka      IRQ 6
+0f drukarka LPT 1 IRQ 7
+10 Rom Bios ster. VIDEO
+11 Rom Bios pobranie listy urzadzen 
+12 Rom Bios pobranie rozmiaru pamieci konwencj.
+13 Rom Bios sterownik dyskow 
+14 Komunikacja szeregowa
+15 Poszerzona kom. szereg. 
+16 klawiatura
+17 drukarka
+18 Rom Basic or Sytem Halted !!! 
+19 Boot Strap 
+1a Czas dnia
+1b Ctrl-Break 
+1c Bios Zegar
+1d tabela par. Video 
+1e tabela param dyskietki 
+1f czcionka 80-ffh
+20 MS-DOS zakoncz proces
+21 MS-DOS funkcje systemu 
+22 adres wyjscia z programu 
+23 Ctrl-C
+24 Bldy krytyczne 
+25 Absolutny odczyt dysku 
+26 absolutny zapis dysku 
+27 Koniec pracy, zostan w pamieci !!
+28 system bezczynny 
+29 Ms-dos zarez.
+2a Siec
+2b-2e zarez.
+2f przelaczanie zadan 
+30-3f Ms-Dos zarez.
+40 RomBios sterownik napedow dyskietek 
+41 RomBios parametry HDD 0 
+42 RomBios domyslny sterownik video
+43 tabela znakow 
+46 parametry HDD 1
+4a alarm 
+60-66 przerwania urzytkownika
+67 sterownik LIM EMS 
+70 zegar czasu rzecz     IRQ 8
+71                       IRQ 9
+72 zarez                 IRQ 10
+73 zarez                 IRQ 11
+74 zarez.                IRQ 12
+75 koprocesor            IRQ 13
+76 Twardy dysk sterownik IRQ 14
+77 zarez                 IRQ 15
+80-f0 basic 
+f1-ff nie urzywane 
+
+

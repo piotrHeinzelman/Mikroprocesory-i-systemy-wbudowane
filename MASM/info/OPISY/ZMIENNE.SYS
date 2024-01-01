@@ -1,0 +1,29 @@
+spis zmiennych systemowych 
+
+
+
+0040:008a  numer bierzacej strony 
+
+0000:0417h  status klawiatury zob int 16
+
+0000:0472h jesli nie zawiera 1234h to test pamieci przy starcie 
+
+
+
+atrybuty video
+	7 6 5 4 3 2 1 0 
+	^       ^
+        Blink   Inversja
+          ^ ^ ^   ^ ^ ^
+	  T L O   ZN AK  brak obrazu-000  bialy-111 podkreslenie(zn001 tlo000)
+			 obraz normal 000,111  invers 111,000
+	
+tabela kolorow przy zalorzeniu ze B I  kontroluja rozjasnienie 
+ 	0 czarny    8 j.czarny=szary 
+	1 niebieski 9 j.niebieski 
+	2 zielony   10 j.zielony
+	3 turkus    11 j.turkus	
+	4 czerw	    12 j.czerw	
+	5 magenta   13 j.magenta 
+	6 braz      14 zolty 
+        7 bialy     15 j.bialy 

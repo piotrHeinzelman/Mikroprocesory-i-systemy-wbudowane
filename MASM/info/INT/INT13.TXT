@@ -1,0 +1,123 @@
+int 13 system dyskowy 
+
+	ah=00 inicjaacja systemu ***
+		al=00
+		dl=naped 00h-7fh = dyskietka 	
+			 80h- ffh = twardy 
+			jc = blad 
+
+	al=1 odczyt statusu systemu dyskowego ***
+	dl=naped 
+	out: ah=0   al=status poprzedniej operacji 
+		    00-ok 
+
+	ah=02 odczyt sektora ***
+	al=ilosc sektorow 
+	ch=cylinder
+	cl=sektor
+	dh=glowica
+	dl=naped 			     
+	es:bx bufor 
+		out: ah=00 ok al=liczba przecz. sektorow
+
+         ah=3     zapis sektora ***
+	 al=ilosc sektorow
+ 	 ch=culinder 
+	 cl=sector
+	 dh=glowica
+	 dl=naped
+	 es:bx bufor 
+
+	ah=05 formatowanie scierzki ***
+		al=przeplot (only HDD PC/XT)
+		ch=cylinder
+		dh=glowica
+		dl=naped
+		es:bx lista pol adresowych 
+		lista pol sklada sie z czterobajt. sekwencji 
+		bajt 0 = cylinder 
+		     1 = glowica 
+		     2 = sektor 
+		     3 = kod rozmiaru sektora 00-128 bajt / sektor 
+					      01-256 bajt / sektor 
+					      02-512 bajt / sektor	
+					      03-1024 bajt /sektor
+		dla dyskietki liczba sektorow na scierzce jest odczytywana 
+		z biosowej tablicy parametrow adres=int 1Eh
+		jesli at powinna byc poprzedzona int 13 ah=17 w celu 
+		wybrania rodzaju format. nosnika 
+
+	 ah=08 odczyt parametrow dysku ***
+		dl=naped 
+		out:  bl=typ dysku 
+				01=360kB  02=1.2MB 03=720kB 04=1.44 MB
+			ch= 8 mlodszych bitow max. cylindra 
+			cl= 6-7 najstarsze bity max. cylindra 
+			    0-5 max. numer sektora 
+			dh=max. nr. glowicy
+			dl=liczba dyskow 
+			es:di tablica param. dysku 
+
+	  ah=9 inicjacja param. dysku twardego ***
+		dl=naped
+		int 41=blok par. dysku 0
+		int 46=blok parametrow dysku 1 
+			tablica:
+			00-01h max. liczba cylindrow 
+			02 max liczba glowic
+			03-04h zarezerw. 
+			05-06h poczatkowy cylinder zapisu z prekompresja 
+			07 max dlugosc obszaru podlegajaca korekcji ECC
+			08 opcje dysku : 
+				 bity 6-7  niezerowe (01,10,11) wykluczone
+				 ponawianie dostepu do dysku 
+				 bit 5=1 gdy fab. mapa dysku na last cyl+1
+				 bit 4 =?
+				 bit 3=1 gdy wiecej glowic niz 8
+				 bity 0-2 = nie uzywane 
+			09-0bh zarez.
+			0c-0dh cylinder parkowania
+			0fh zarez. 
+
+	ah=0a odczyt dlugiego sektora *** sektor + 4 bajty ECC
+			al=liczba sektorow 
+			ch=cylinder
+			cl=sektor
+			dh=glowica
+			dl=naped only HDD 80-0ffh
+			es:bx bufor 
+			
+	ah=0b zapis dlugiego sektora *** + 4 bajty ECC
+			al=liczba sekt.
+			ch=cylinder
+			cl=sektor
+			dh=glowica
+			dl=naped only HDD
+			es:bx bufor 
+
+	ah=0dh inicjacja HDD ***
+		dl=naped 
+
+	ah=17h ustawienie typu dyskietki ***
+		al=kod dyskietki 
+			00 nie urzywany 
+			01 dysk 320/360 w napedzie 360 kb 
+			02 dysk 320/360 w napedzie 1.2 MB
+			03 dysk 1.2MB w stacji 1.2
+			04 dysk 720 w stacji 720 
+		dl=naped  only dyskietka 00-07fh
+		
+	ah=18 ustaw typ nosnik do formatowania 
+		ch=liczba cylindrow
+		cl= sektor / scierzke 
+		dl= naped
+                out :es:di tablica param dla dyskietki  
+
+	ah=19 parkowanie glowic ***
+		dl=naped 80-0ffh  HDD 
+
+	
+			
+			
+			
+

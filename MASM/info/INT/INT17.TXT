@@ -1,0 +1,18 @@
+drukarka
+	ah=00 Wyslanie znaku na drukarke ***
+	al-znak 
+	dx-nr,portu 0-plt1 1-plt2
+	out: bit 7-gotowa 6-podlaczona 5-koniec papieru 4-on-line
+		3-blad i/o  2,1 - nie urzywane  0-time out 
+
+
+	ah-01 inicjacja portu drukarki ***
+	dx-nr.portu 
+	out:ax-status
+
+
+
+ 
+
+	
+		

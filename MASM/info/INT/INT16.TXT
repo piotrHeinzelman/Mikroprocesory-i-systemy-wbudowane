@@ -1,0 +1,32 @@
+klawiatura IRQ 01
+	ah=0 odczyt znaku 
+	out:ah=kod klawisza al=znak ASCII 
+
+	ah=1 Odczyt statusu klawiatury 
+	out:ah=kod klawisza al=znak 
+
+	ah=02 Odczyt flag klawiatury 
+	al=flagi bit 7-Insert   6-CapsLock  5-NumLock  4-ScrollLock
+		     3-Alt      2-Ctr       1-lewy Shift  0-prawy Shift
+	(odczyt komurki 0000:0417h)
+
+	ah=05 Wstawianie znaku i kodu w klawiature 
+	ch=kod klawisza
+	cl=znak ascii
+
+
+	ah=10 odczyt znaku klaw. poszerzonej 
+	ah=kod klaw.
+	al=znak 
+
+	ah=11 odczyt statusu klaw. poszerzonej
+	out: ah=kod klaw. 
+	     al=znak	
+
+	ah=12 Odczyt flag klaw. poszerzonej 
+	ax=flagi 
+	00-prawyShift    01-lewyShift  02-Ctrl  03-Alt  04-Scroll
+	05-NumLock on	 06-Caps on    07-Ins on  08-lewy Ctrl 
+	09-lewyAlt       0a-prawyCtrl  0b-prawyAlt  0c-Sscroll wcisniety
+	0d-Num nacisniety  0e-Caps nacisniety 0f-SYSREQUEST nacisniety
+

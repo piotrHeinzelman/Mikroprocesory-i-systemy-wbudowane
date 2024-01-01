@@ -1,0 +1,20 @@
+adr wzgledny 
+00-01h rozkaz int 20 miedzysegmentowy skok pod ten adres konczy program 
+02-03 wskaznik 1 wolnego segmentu w pamieci operacyjnej
+04 zarez.
+05-06 Miedzysegmentowe wywolanie funkcji 00-24h nr. funkcji w cl 
+0a-0d Adres kontynuacji po zakonczeniu programu (kopia int 22)
+0e-11 adres obslugi Ctrl-c (int 23)
+12-15 adres obslugi bledow fatalnych (int 24)
+16-2b  zarez
+2c-2d adres segmentu obszaru zawierajacymi otoczenie programowe dane od set ..
+	np. parh=xxx konczy 0 koniec tablicy 0,0
+2f-4f zarez.
+50-52 int 21h oraz ret slurza do wywolania funkcji systemowej 00-57h
+53-5b zarez
+5c-6b blok sterujacy fcb1
+6c-7f blok sterujacy drugiego pliku fcb2
+80-ff obszar transmisji DTA , bufor 
+lub 80-81 liczba wprowadzonych znakow
+82 ... wprowadzone znaki 
+

@@ -1,0 +1,32 @@
+pliki typu .sys
+zawiera programy obslugi urzadzen 
++0 4 adres kolejnego programu obslugi ustawiane na 0ffffff
++4 2 atrybuty urzadzenia 
+	bit wart znaczenie
+
+		URZADZENIE ZNAKOWE 
+         0   1  urzadzenia jest konsola wejsciowa sti 
+ 	 1   1  urzadzenie jest konsola wyjsciowa sto 
+ 	 2   1  urzadzenie jest czarna dziura     NUL
+	 3   1  urzadzenie jest zegarem        clock$
+	 4-5 zarez.
+	 6   1 obsluguje polecenia wersji 3.2 i wyrzszych 
+	 7-10 zarez
+	 11  1   obsluguje polecnia otwrcia/zamkniecia
+	 12 zarez.
+	 13  1  obsluguje polecenie 16 z listy ploecen (zapis dopuki zajete)
+	 14  1  obsluga funkcji IOCTL
+	 15  1  urzadzenie znakowe 
+ 
+	        URZADZENIE BLOKOWE 
+	 0-5 zarez. 
+	 6   1  obsluguje polecenia 3.20 i wyrzsze
+	 7-10 zarez
+	 11  1  obsluga open/close
+	 12  1 zarez
+	 13  1 korzystanie z metryczki w bloku ladujacym 
+	 14  1 obsluga IOCTL
+	 15  0 urzadzenie blokowe
++6 2 adres adres punktu zglaszania zlecen 
++8 2 adres punktu obslugi przerwan 
++a 8 nazwa urzadzenia znakowego lub liczba jednistek blokowego 

@@ -1,0 +1,10 @@
+int 15
+ah=89
+bh=offset w tablicy przerwan adresow obslugi IRQ 0 -IRQ 7
+bl=offset w tablicy przerwan adresow obslugi IRQ 8 -IRQ 0f
+es:si tablica deskryptorow 
+out: ah=0 przeszedl w tryb virtualny 
+
+w tablicy deskr. przez es:bx w polach 1ah,22,2a,32 
+nowe wartosci dla  rejestrow ds,es,ss,cs
+

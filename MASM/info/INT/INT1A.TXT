@@ -1,0 +1,19 @@
+
+
+ah=02 odczyt czasu CMOS 
+	out ch=godziny format BCD 
+	    cl=minuty
+	    dh=sekundy 
+	    dl=kod rodzaju 00 zwykly  01-letni 
+
+ah=03 ustawienie czasu tak samo jak wyrzej 
+
+ah=04 odczyt daty 
+	ch=wiek 19 lub 20 f. BCD
+	cl=rok 
+	dh=miesiac
+	dl=dzien
+
+ah=05 ustawiemnie daty jak powyrzej
+
+

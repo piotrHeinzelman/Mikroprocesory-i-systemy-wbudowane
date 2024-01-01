@@ -1,0 +1,12 @@
+obsluga procesow 
+ah=numer procesu 
+	01 -pront
+	02 assign 
+	03 share
+	c0 siec
+al=0
+out:
+al=stan zainstalowania
+00 niezainstalowany, mozna instalowac
+01 nie zainstalowany nie mozna install.
+0ff zainstalowany 

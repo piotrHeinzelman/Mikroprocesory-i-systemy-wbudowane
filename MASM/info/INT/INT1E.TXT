@@ -1,0 +1,13 @@
+tablica parametrow fdd
+offset
++0     bity 0-3 czas miedzy operacjami  4-7 czas rozladowania glowicy
++1  bit 0-dma w urzyciu 2-7 czas ladowania glowicy 
++2 czas wlaczania motoru
++3 rozmiar sectora 0-128 1-256 2-512 3-1024
++4 EOT ostatni sektor na scierzce
++5 dostep przy operacjach zapis/odczyt
++6 max rozmiar danych 
++7 odstep przy formatowaniu
++8 znak wypelniajacy podczas formatowania stand.0f6h
++9 czas umieszczania glowicy (w milisek.)
++0a czas startu silnika w (1/8 sek)

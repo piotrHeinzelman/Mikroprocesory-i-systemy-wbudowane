@@ -1,0 +1,24 @@
+-7h bajt o zawaet. 0ffh 
+-6h..-2h zarez
+-1h atrybut pliku  0000000 bez ogr. 
+		 ??????1 tylko do czytania
+	         ?????1? ukryty
+		 ????1?? systemowy 
+		 ???1??? nazwa logiczna nosnika pamieci volume id 
+				umieszczona w root 
+		 ??1???? podkatalog
+		 ?1????? zarez
+		 1?????? zarez 
+
+0h nr. stacji 0-aktualna 1-a 2-b ...
+01h-08h nazwa+spacje(20h)
+09h-0bh rozszerzenie
+0ch-0dh wskazanie aktualnego rekordu logicznego 
+0eh-0fh wielkosc bloku w bajtach  stand. 80h
+10-13 rozmiar pliku 
+14-15 Data ost. zapisu  15h-RRRRRRRM 14h-MMMDDDDD r-rok m-miesiac d-dzien
+16-17 czas ost. zapisu  17h-ggggmmm 16hmmmsssss  g-godzina m-minuta s-2*sek
+18h-1fh zarez.
+20h aktualny blok o dlugosci 128b wewnatrz rekordu logicznego 
+21-24 bierzacy  nr. bloku od poczatku pliku 
+		 
